@@ -1,9 +1,10 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Link from "next/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars, faXmark, faMoon, faSun } from "@fortawesome/free-solid-svg-icons";
-import { navLinks } from "@/data/nav";
+import { navLinks, externalLinks } from "@/data/nav";
 import { profile } from "@/data/profile";
 import { useActiveSection } from "@/lib/hooks";
 import { useTheme } from "@/lib/theme-context";
@@ -65,6 +66,11 @@ export default function Navbar() {
               {link.label}
             </a>
           ))}
+          {externalLinks.map((link) => (
+            <Link key={link.href} href={link.href} className="navbar-link navbar-link-external">
+              {link.label}
+            </Link>
+          ))}
         </nav>
 
         <div className="navbar-actions">
@@ -105,6 +111,17 @@ export default function Navbar() {
             >
               {link.label}
             </a>
+          ))}
+          {externalLinks.map((link, index) => (
+            <Link
+              key={link.href}
+              href={link.href}
+              className="mobile-menu-link"
+              style={{ transitionDelay: menuOpen ? `${(navLinks.length + index) * 40}ms` : "0ms" }}
+              onClick={() => setMenuOpen(false)}
+            >
+              {link.label}
+            </Link>
           ))}
         </nav>
       </div>
