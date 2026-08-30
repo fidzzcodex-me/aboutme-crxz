@@ -63,6 +63,22 @@ Jalankan `npm run build` di mesin Anda dulu sebelum deploy ke production. Kalau 
 
 ## Struktur
 
+## Halaman 3D Robot (`/robot`)
+
+Robot 3D interaktif dibangun dari primitive geometries Three.js (bukan model import dari asset store), lengkap dengan idle animation (breathing, blink, head-turn), drag-to-rotate, dan text-to-speech pakai `SpeechSynthesis` browser native.
+
+- Auto-intro saat halaman dibuka, baca `profile.tagline`
+- Input teks — apa pun yang diketik akan dibacakan robotnya
+- Gratis, tanpa API key — kualitas suara tergantung browser/OS user (Web Speech API bawaan)
+
+**Keterbatasan yang perlu diketahui:**
+- Web Speech API tidak mengekspos audio stream, jadi gerakan mulut/kepala saat bicara bukan lipsync asli dari amplitude suara — itu animasi pulse yang disinkronkan ke event start/end bicara. Cukup meyakinkan secara visual, tapi bukan analisis audio real.
+- Kualitas suara TTS tergantung device (biasanya lebih natural di macOS/iOS dibanding Windows/Android).
+- Model robotnya geometric/low-poly, dirakit dari kode sendiri (`lib/robot-builder.js`) — bukan file 3D yang diimpor dari mana pun.
+
+Akses lewat navbar ("3D Robot"), command palette (Ctrl+K → "Open 3D Robot"), atau langsung ke `/robot`.
+
+
 ```
 app/            layout, page, api/contact, 404, sitemap
 components/     Navbar, Footer, ParticleField, CommandPalette, ProjectModal, Toast, Reveal
