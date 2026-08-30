@@ -1,0 +1,107 @@
+.palette-trigger {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 40;
+  padding: 10px 14px;
+  border-radius: var(--radius-sm);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  color: var(--text-secondary);
+  font-size: 13px;
+  box-shadow: var(--shadow-sm);
+  transition: border-color var(--transition-fast), color var(--transition-fast);
+}
+
+.palette-trigger:hover {
+  border-color: var(--blue-soft);
+  color: var(--blue);
+}
+
+.palette-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 150;
+  background: rgba(10, 18, 32, 0.45);
+  backdrop-filter: blur(3px);
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 100px 20px 20px;
+  animation: fade-in 180ms ease;
+}
+
+.palette-panel {
+  width: 100%;
+  max-width: 480px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-md);
+  overflow: hidden;
+  animation: modal-in 200ms cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+.palette-input {
+  width: 100%;
+  padding: 18px 20px;
+  border: none;
+  border-bottom: 1px solid var(--border);
+  background: transparent;
+  color: var(--text-primary);
+  font-size: 15px;
+}
+
+.palette-input:focus-visible {
+  outline: none;
+}
+
+.palette-list {
+  max-height: 320px;
+  overflow-y: auto;
+  padding: 8px;
+}
+
+.palette-empty {
+  padding: 20px;
+  text-align: center;
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+.palette-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  padding: 12px 14px;
+  border-radius: var(--radius-sm);
+  background: none;
+  border: none;
+  font-size: 14px;
+  color: var(--text-primary);
+  text-align: left;
+  transition: background var(--transition-fast);
+}
+
+.palette-item svg {
+  color: var(--blue);
+  width: 15px;
+}
+
+.palette-item:hover {
+  background: var(--blue-tint);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .palette-backdrop,
+  .palette-panel {
+    animation: none;
+  }
+}
+
+@media (max-width: 560px) {
+  .palette-backdrop {
+    padding: 60px 16px 16px;
+  }
+}
