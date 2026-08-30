@@ -66,6 +66,20 @@
   width: 100%;
 }
 
+.navbar-link-external {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.navbar-link-external::before {
+  content: "";
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--blue);
+}
+
 .navbar-actions {
   display: flex;
   align-items: center;
