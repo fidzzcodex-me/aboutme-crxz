@@ -6,3 +6,5 @@ export const navLinks = [
   { id: "timeline", label: "Timeline" },
   { id: "contact", label: "Contact" },
 ];
+
+export const externalLinks = [{ href: "/robot", label: "3D Robot" }];
