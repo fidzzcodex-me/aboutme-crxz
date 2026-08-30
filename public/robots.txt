@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://fidzzcodex.vercel.app/sitemap.xml
+Sitemap: https://aboutme-crxz.vercel.app/sitemap.xml
