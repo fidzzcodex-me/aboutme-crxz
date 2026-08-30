@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState, useCallback } from "react";
+import { useRouter, usePathname } from "next/navigation";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faHouse,
@@ -9,6 +10,7 @@ import {
   faLayerGroup,
   faEnvelope,
   faCircleHalfStroke,
+  faRobot,
 } from "@fortawesome/free-solid-svg-icons";
 import { useTheme } from "@/lib/theme-context";
 import "./CommandPalette.css";
@@ -17,19 +19,26 @@ export default function CommandPalette() {
   const [open, setOpen] = useState(false);
   const [query, setQuery] = useState("");
   const { toggleTheme } = useTheme();
+  const router = useRouter();
+  const pathname = usePathname();
 
-  const commands = [
-    { id: "home", label: "Go Home", icon: faHouse, action: () => scrollTo("home") },
-    { id: "about", label: "Go About", icon: faUser, action: () => scrollTo("about") },
-    { id: "projects", label: "View Projects", icon: faDiagramProject, action: () => scrollTo("projects") },
-    { id: "stack", label: "View Stack", icon: faLayerGroup, action: () => scrollTo("stack") },
-    { id: "contact", label: "Contact", icon: faEnvelope, action: () => scrollTo("contact") },
-    { id: "theme", label: "Toggle Theme", icon: faCircleHalfStroke, action: () => toggleTheme() },
-  ];
-
-  function scrollTo(id) {
+  function goToSection(id) {
+    if (pathname !== "/") {
+      router.push(`/#${id}`);
+      return;
+    }
     document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
   }
+
+  const commands = [
+    { id: "home", label: "Go Home", icon: faHouse, action: () => goToSection("home") },
+    { id: "about", label: "Go About", icon: faUser, action: () => goToSection("about") },
+    { id: "projects", label: "View Projects", icon: faDiagramProject, action: () => goToSection("projects") },
+    { id: "stack", label: "View Stack", icon: faLayerGroup, action: () => goToSection("stack") },
+    { id: "contact", label: "Contact", icon: faEnvelope, action: () => goToSection("contact") },
+    { id: "robot", label: "Open 3D Robot", icon: faRobot, action: () => router.push("/robot") },
+    { id: "theme", label: "Toggle Theme", icon: faCircleHalfStroke, action: () => toggleTheme() },
+  ];
 
   const close = useCallback(() => {
     setOpen(false);
